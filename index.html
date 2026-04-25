@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>SyncAir Heating and Cooling Inc.</title>
+<link href="https://fonts.googleapis.com/css2?
+family=Barlow:wght@300;400;500;600;700&family=Barlow+Condensed:wght@600;700&display=swap" rel="stylesheet" />
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet" />
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />
+<style>
+:root {
+--navy: red;
+--orange: #e84c0e;
+--light-blue: #4ab3e8;
+--mid-blue: #1e6fa8;
+--gray: #6b7280;
+--light-gray: #f4f6f9;
+--white: #ffffff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+font-family: 'Barlow', sans-serif;
+color: #1f2937;
+background: #fff;
+}
+/* ── NAVBAR ── */
+.navbar {
+background: #0D2B5B;
+padding: 0.75rem 0;
+position: sticky;
+top: 0;
+z-index: 1000;
+box-shadow: 0 2px 12px rgba(0,0,0,0.25);
+}
+.navbar-brand img { height: 52px; }
+.navbar-nav .nav-link {
+color: rgba(255,255,255,0.85) !important;
+font-weight: 500;
+font-size: 0.92rem;
+letter-spacing: 0.06em;
+text-transform: uppercase;
+padding: 0.5rem 1.1rem !important;
+transition: color 0.2s;
+}
+.navbar-nav .nav-link:hover { color: var(--light-blue) !important; }
+.navbar-toggler { border-color: rgba(255,255,255,0.3); }
+.navbar-toggler-icon { filter: invert(1); }
+/* ── HERO ── */
+.hero {
+background: linear-gradient(135deg, var(--navy) 0%, #0f1e3d 60%, #162444 100%);
+color: #fff;
+padding: 0px 0 80px;
+position: relative;
+overflow: hidden;
+}
+.hero::before {
+content: '';
+position: absolute;
+top: -80px; right: -80px;
+width: 520px; height: 520px;
+border-radius: 50%;
+background: radial-gradient(circle, rgba(74,179,232,0.12) 0%, transparent 70%);
+}
+.hero::after {
+content: '';
+position: absolute;
+bottom: -100px; left: -60px;
+width: 400px; height: 400px;
+border-radius: 50%;
+background: radial-gradient(circle, rgba(232,76,14,0.10) 0%, transparent 70%);
+}
+.hero-logo { height: 130px; margin-bottom: 1.5rem; filter: drop-shadow(0 4px 16px rgba(0,0,0,0.35)); }
+.hero h1 {
+font-family: 'Barlow Condensed', sans-serif;
+font-size: clamp(2.2rem, 5vw, 3.4rem);
+font-weight: 700;
+letter-spacing: 0.02em;
+line-height: 1.15;
+
+}
+.hero h1 span { color: var(--orange); }
+.hero p {
+font-size: 1.1rem;
+font-weight: 300;
+color: rgba(255,255,255,0.75);
+max-width: 540px;
+margin: 1rem auto 2rem;
+}
+.btn-hero {
+background: var(--orange);
+color: #fff;
+border: none;
+padding: 0.75rem 2rem;
+font-weight: 600;
+font-size: 0.95rem;
+letter-spacing: 0.05em;
+text-transform: uppercase;
+border-radius: 3px;
+text-decoration: none;
+display: inline-block;
+transition: background 0.2s, transform 0.2s;
+}
+.btn-hero:hover { background: #c93e08; color: #fff; transform: translateY(-2px); }
+/* ── SECTION COMMONS ── */
+section { padding: 80px 0; }
+.section-title {
+font-family: 'Barlow Condensed', sans-serif;
+font-size: 2rem;
+font-weight: 700;
+color: #de404f;
+text-transform: uppercase;
+letter-spacing: 0.04em;
+}
+.section-divider {
+width: 48px; height: 4px;
+background: var(--orange);
+border-radius: 2px;
+margin: 0.6rem auto 0;
+}
+.section-divider.left { margin-left: 0; }
+/* ── WEATHER ── */
+#weather { background: var(--light-gray); }
+.weather-card {
+background: var(--white);
+border-radius: 6px;
+box-shadow: 0 2px 14px rgba(0,0,0,0.07);
+padding: 1.75rem;
+height: 100%;
+}
+.weather-card .location-label {
+font-size: 0.75rem;
+font-weight: 600;
+letter-spacing: 0.1em;
+text-transform: uppercase;
+color: var(--gray);
+margin-bottom: 0.4rem;
+}
+.weather-card .city-name {
+font-family: 'Barlow Condensed', sans-serif;
+font-size: 1.4rem;
+font-weight: 700;
+color: black;
+}
+.weather-card .temp {
+font-family: 'Barlow Condensed', sans-serif;
+font-size: 3.8rem;
+font-weight: 700;
+color: black;
+line-height: 1;
+margin: 0.5rem 0 0.25rem;
+}
+.weather-card .temp sup { font-size: 1.6rem; vertical-align: super; }
+.weather-card .condition {
+font-size: 1rem;
+color: var(--gray);
+font-weight: 400;
+}
+.weather-card .weather-icon { font-size: 3rem; margin-bottom: 0.5rem; }
+.weather-card .weather-details { margin-top: 1rem; }
+.weather-card .weather-detail-item {
+display: flex; align-items: center; gap: 0.5rem;
+font-size: 0.9rem; color: var(--gray);
+
+margin-bottom: 0.35rem;
+}
+.weather-card .weather-detail-item i { width: 16px; color: var(--mid-blue); }
+.weather-loading { color: var(--gray); font-size: 0.95rem; padding: 1rem 0; }
+.weather-hvac-tip {
+margin-top: 1.1rem;
+padding: 0.8rem 1rem;
+background: #eef6fb;
+border-left: 3px solid var(--mid-blue);
+border-radius: 3px;
+font-size: 0.87rem;
+color: var(--navy);
+}
+.weather-hvac-tip i { color: var(--orange); margin-right: 0.4rem; }
+/* ── SERVICES ── */
+#services { background: #fff; }
+.service-card {
+border: 1px solid #e5e7eb;
+border-radius: 6px;
+padding: 2rem 1.75rem;
+height: 100%;
+transition: box-shadow 0.2s, transform 0.2s, border-color 0.2s;
+position: relative;
+overflow: hidden;
+}
+.service-card::before {
+content: '';
+position: absolute;
+top: 0; left: 0; right: 0;
+height: 3px;
+background: linear-gradient(90deg, var(--orange), var(--light-blue));
+opacity: 0;
+transition: opacity 0.2s;
+}
+.service-card:hover { box-shadow: 0 8px 28px rgba(0,0,0,0.10); transform: translateY(-4px); border-color: transparent; }
+.service-card:hover::before { opacity: 1; }
+.service-icon {
+width: 56px; height: 56px;
+background: var(--light-gray);
+border-radius: 50%;
+display: flex; align-items: center; justify-content: center;
+margin-bottom: 1.25rem;
+}
+.service-icon i { font-size: 1.4rem; color: black; }
+.service-card h4 {
+font-family: 'Barlow Condensed', sans-serif;
+font-size: 1.3rem;
+font-weight: 700;
+color: #de404f;
+text-transform: uppercase;
+letter-spacing: 0.03em;
+margin-bottom: 0.75rem;
+}
+.service-card p { font-size: 0.93rem; color: var(--gray); line-height: 1.65; }
+.service-type-badge {
+display: inline-block;
+font-size: 0.72rem;
+font-weight: 600;
+letter-spacing: 0.08em;
+text-transform: uppercase;
+padding: 0.25rem 0.65rem;
+border-radius: 20px;
+margin-bottom: 0.9rem;
+}
+.badge-residential { background: #fff3ed; color: var(--orange); }
+/* ── ABOUT ── */
+.badge {
+background-color: red;
+color: white;
+padding: 4px 8px;
+text-align: center;
+font-size: 25px;
+border-radius: 5px;
+}
+#about { background: var(--light-gray); }
+.about-content h2 { text-align: left; }
+.about-content p { color: var(--gray); font-size: 0.97rem; line-height: 1.8; margin-top: 1.1rem; }
+.stat-block { margin-top: 2rem; }
+.stat-item { margin-bottom: 1.25rem; }
+.stat-item .stat-number {
+font-family: 'Barlow Condensed', sans-serif;
+font-size: 2.4rem;
+
+font-weight: 700;
+color: var(--orange);
+line-height: 1;
+}
+}
+.stat-item .stat-label { font-size: 0.85rem; color: var(--gray); font-weight: 500; letter-spacing: 0.04em; }
+.about-image-block {
+background: linear-gradient(135deg, var(--navy), #1e6fa8);
+border-radius: 6px;
+padding: 3rem;
+color: white;
+text-align: center;
+height: 100%;
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+}
+.about-image-block img { height: 150px; margin-bottom: 1.5rem; filter: brightness(1.1); }
+.about-image-block h3 {
+font-family: 'Barlow Condensed', sans-serif;
+font-size: 1.5rem;
+font-weight: 700;
+letter-spacing: 0.04em;
+}
+.about-image-block p { font-size: 0.9rem; color: rgba(255,255,255,0.75); margin-top: 0.5rem; }
+.value-list { list-style: none; padding: 0; margin-top: 1.25rem; text-align: left; }
+.value-list li { font-size: 0.9rem; color: rgba(255,255,255,0.85); padding: 0.4rem 0; border-bottom: 1px solid rgba(255,255,255,0.1); }
+.value-list li i { color: var(--light-blue); margin-right: 0.5rem; }
+/* ── CONTACT ── */
+#contact { background: var(--white); }
+.contact-info-block { margin-bottom: 1.5rem; }
+.contact-info-block h5 {
+font-family: 'Barlow Condensed', sans-serif;
+font-size: 1.1rem;
+font-weight: 700;
+color: #de404f;
+text-transform: uppercase;
+letter-spacing: 0.05em;
+margin-bottom: 0.4rem;
+}
+.contact-item { display: flex; align-items: flex-start; gap: 0.75rem; margin-bottom: 0.9rem; }
+.contact-item .contact-icon {
+width: 38px; height: 38px;
+background: var(--light-gray);
+border-radius: 50%;
+display: flex; align-items: center; justify-content: center;
+flex-shrink: 0;
+}
+.contact-item .contact-icon i { color: black; font-size: 0.9rem; }
+.contact-item .contact-text { font-size: 0.93rem; color: var(--gray); line-height: 1.5; }
+
+.contact-item .contact-text strong { color: #de404f; display: block; font-size: 0.8rem; letter-spacing: 0.05em; text-transform: uppercase; margin-
+bottom: 0.1rem; }
+
+.contact-form-card {
+background: var(--light-gray);
+border-radius: 6px;
+padding: 2rem;
+}
+.form-control, .form-select {
+border: 1px solid #d1d5db;
+border-radius: 3px;
+font-size: 0.9rem;
+padding: 0.65rem 0.9rem;
+color: #1f2937;
+}
+.form-control:focus, .form-select:focus {
+border-color: var(--mid-blue);
+box-shadow: 0 0 0 3px rgba(30,111,168,0.12);
+}
+.form-label { font-size: 0.82rem; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; color: black; }
+.btn-submit {
+background: #de404f;
+color: #fff;
+border: none;
+padding: 0.75rem 2rem;
+font-weight: 600;
+font-size: 0.9rem;
+letter-spacing: 0.06em;
+text-transform: uppercase;
+border-radius: 3px;
+width: 100%;
+cursor: pointer;
+transition: background 0.2s;
+
+}
+.btn-submit:hover { background: var(--orange); }
+/* ── FOOTER ── */
+footer {
+background: #de404f;
+background: linear-gradient(135deg, var(--navy) 0%, #0f1e3d 60%, #162444 100%);
+color: #fff;
+padding: 0px 0 80px;
+color: rgba(255,255,255,0.65);
+padding: 2rem 0;
+font-size: 0.85rem;
+text-align: center;
+}
+footer img { height: 42px; margin-bottom: 0.75rem; }
+footer a { color: rgba(255,255,255,0.65); text-decoration: none; }
+footer a:hover { color: var(--light-blue); }
+.footer-divider { border-top: 1px solid rgba(255,255,255,0.1); margin: 1rem 0; }
+/* ── RESPONSIVE ── */
+@media (max-width: 768px) {
+section { padding: 60px 0; }
+.hero { padding: 70px 0 60px; }
+.hero-logo { height: 100px; }
+}
+</style>
+</head>
+<body>
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg">
+<div class="container">
+<a class="navbar-brand" href="#">
+<a class="navbar-brand" href="#">
+<a class="navbar-brand" href="#">
+<img src="C:/Users/Dell/Desktop/Website/logo.png" alt="SyncAir Logo" style="height:52px;">
+</a>
+</a>
+</a>
+<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+<span class="navbar-toggler-icon"></span>
+</button>
+<div class="collapse navbar-collapse" id="navMenu">
+<ul class="navbar-nav ms-auto">
+<li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
+<li class="nav-item"><a class="nav-link" href="#about">About Us</a></li>
+<!--<li class="nav-item"><a class="nav-link" href="#weather">Weather</a></li>-->
+<li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+</ul>
+</div>
+</div>
+</nav>
+<!-- HERO -->
+<section class="hero text-center">
+<div class="container position-relative" style="z-index:1;">
+<img src="C:/Users/Dell/Desktop/Website/logo.png" alt="SyncAir" class="hero-logo" style="height:500px;">
+<h1>Future of <span>Home Comfort</span></h1>
+<p>Professional heating and cooling solutions for homes across Peterborough and surrounding areas.</p>
+<a href="#contact" class="btn-hero">Contact Us Today</a>
+</div>
+</section>
+<!-- SERVICES -->
+<section id="services">
+<div class="container">
+<div class="text-center mb-5">
+<div class="section-title">Our Services</div>
+<div class="section-divider mx-auto"></div>
+<p class="text-muted mt-3" style="max-width:520px;margin:0 auto;font-size:0.95rem;">We offer comprehensive residential HVAC solutions —
+from routine maintenance to full system installation.</p>
+</div>
+<div class="row g-4">
+<div class="col-md-4">
+<div class="service-card">
+<span class="service-type-badge badge-residential">Residential</span>
+<div class="service-icon"><i class="fa-solid fa-wrench"></i></div>
+<h4>Maintenance</h4>
+<p>Keep your HVAC system running efficiently year-round with our scheduled tune-ups and preventative maintenance plans. Regular
+service extends equipment life and lowers energy costs.</p>
+</div>
+</div>
+<div class="col-md-4">
+<div class="service-card">
+<span class="service-type-badge badge-residential">Residential</span>
+<div class="service-icon"><i class="fa-solid fa-screwdriver-wrench"></i></div>
+<h4>Repair</h4>
+<p>Fast, reliable repairs for all makes and models of heating and cooling equipment. Our certified technicians diagnose problems quickly
+and restore your comfort with minimal downtime.</p>
+
+</div>
+</div>
+<div class="col-md-4">
+<div class="service-card">
+<span class="service-type-badge badge-residential">Residential</span>
+<div class="service-icon"><i class="fa-solid fa-fan"></i></div>
+<h4>Installation</h4>
+<p>Expert installation of new Furnaces, Air Conditioners, Heat-pumps, Hot water tanks,Tankless water heater, Boilers and Ductless
+systems. We help you choose the right equipment for your home's size, needs, and budget.</p>
+</div>
+</div>
+</div>
+</div>
+<!-- CTA -->
+<div class="text-center mt-5">
+<a href="tel:16833070001" class="btn-hero">Call Now for a Free Quote</a>
+</div>
+</div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+<div class="container">
+<div class="row align-items-center g-5">
+<div class="col-lg-7 about-content">
+<div class="section-title">About Us</div>
+<div class="section-divider left"></div>
+<p>SyncAir Heating and Cooling Inc. is a locally owned and operated HVAC company proudly serving Peterborough, Ontario and the
+surrounding communities. Founded on the principles of quality workmanship, honest service, and lasting customer relationships.</p>
+<p>Our team of certified technicians brings expertise and professionalism to every job — whether it's a simple filter replacement, an
+emergency repair in the middle of winter, or a complete system installation. We treat every home as if it were our own.</p>
+<p>At SyncAir, we believe comfortable homes make for happier families. That's why we're committed to delivering dependable solutions at
+fair prices, every time.</p>
+<div class="stat-block row g-3 mt-2">
+<div class="col-4 stat-item">
+<div class="stat-number">6+</div>
+<div class="stat-label">Years in Business</div>
+</div>
+<div class="col-4 stat-item">
+<div class="stat-number">100+</div>
+<div class="stat-label">Happy Clients</div>
+</div>
+<div class="col-4 stat-item">
+<div class="stat-number">24/7</div>
+<div class="stat-label">Emergency Service</div>
+</div>
+<span class="badge">Proudly Canadian</span>
+</div>
+</div>
+<div class="col-lg-5">
+<div class="about-image-block">
+<img src="C:/Users/Dell/Desktop/Website/logo.png" alt="SyncAir" />
+<h3>SyncAir Heating and Cooling Inc.</h3>
+<p>Proudly serving Peterborough and surrounding areas</p>
+<ul class="value-list">
+<li><i class="fa-solid fa-check"></i> Licensed &amp; Insured Technicians</li>
+<li><i class="fa-solid fa-check"></i> All Makes &amp; Models Serviced</li>
+<li><i class="fa-solid fa-check"></i> Transparent, Upfront Pricing</li>
+<li><i class="fa-solid fa-check"></i> Emergency Response Available</li>
+<li><i class="fa-solid fa-check"></i> 100% Satisfaction Guarantee</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- WEATHER -->
+
+<a class="weatherwidget-io" href="https://forecast7.com/en/44d31n78d32/peterborough/" data-label_1="PETERBOROUGH" data-
+label_2="WEATHER" data-theme="original" >PETERBOROUGH WEATHER</a>
+
+<script>
+!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id))
+{js=d.createElement(s);js.id=id;js.src='https://weatherwidget.io/js/widget.min.js';fjs.parentNode.insertBefore(js,fjs);}}
+(document,'script','weatherwidget-io-js');
+</script>
+<!--
+<section id="weather">
+<div class="container">
+<div class="text-center mb-5">
+<div class="section-title">Today's Weather</div>
+<div class="section-divider mx-auto"></div>
+<p class="text-muted mt-3" style="max-width:520px;margin:0 auto;font-size:0.95rem;">Current conditions to help you plan your comfort
+needs.</p>
+
+</div>
+<div class="row g-4 justify-content-center">
+<!-- Peterborough -->
+<!--<div class="col-md-5">
+<div class="weather-card">
+<div class="location-label"><i class="fa-solid fa-location-dot me-1" style="color:var(--orange)"></i>Our Service Area</div>
+<div class="city-name">Peterborough, ON</div>
+<div id="ptbo-weather">
+<div class="weather-loading"><i class="fa-solid fa-circle-notch fa-spin me-2"></i>Loading weather...</div>
+</div>
+</div>
+</div> -->
+<!-- User Location -->
+<!-- <div class="col-md-5">
+<div class="weather-card">
+<div class="location-label"><i class="fa-solid fa-crosshairs me-1" style="color:var(--mid-blue)"></i>Your Location</div>
+<div class="city-name" id="user-city">Detecting location...</div>
+<div id="user-weather">
+<div class="weather-loading"><i class="fa-solid fa-circle-notch fa-spin me-2"></i>Detecting location...</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section> -->
+<!-- CONTACT -->
+<!-- ADD THIS RIGHT AFTER <body> -->
+<div style="background:#e84c0e;color:#fff;text-align:center;padding:8px 10px;font-size:0.9rem;font-weight:600;">
+🚨 24/7 Emergency HVAC Service Available — Call Now: <a href="tel:16833070001" style="color:#fff;text-decoration:underline;">(683) 307-
+0001</a>
+</div>
+<!-- STICKY CALL BUTTON -->
+<a href="tel:16833070001" style="
+position:fixed;
+bottom:20px;
+right:20px;
+background:#e84c0e;
+color:#fff;
+padding:14px 18px;
+border-radius:50px;
+font-weight:600;
+box-shadow:0 8px 20px rgba(0,0,0,0.25);
+z-index:9999;
+text-decoration:none;
+">
+📞 Call Now
+</a>
+<section id="contact">
+<div class="container">
+<div class="text-center mb-5">
+<div class="section-title">Contact Us</div>
+<div class="section-divider mx-auto"></div>
+<p class="text-muted mt-3" style="max-width:480px;margin:0 auto;font-size:0.95rem;">We're here to help. Reach out and our team will
+respond promptly.</p>
+</div>
+<div class="row g-5">
+<div class="col-lg-5">
+<div class="contact-info-block">
+<h5>Get In Touch</h5>
+</div>
+<div class="contact-item">
+<div class="contact-icon"><i class="fa-solid fa-phone"></i></div>
+<div class="contact-text"><strong>Phone</strong>(683) 307-0001 </div>
+</div>
+<div class="contact-item">
+<div class="contact-icon"><i class="fa-solid fa-envelope"></i></div>
+<div class="contact-text"><strong>Email</strong>syncairinfo@gmail.com</div>
+</div>
+<div class="contact-item">
+<div class="contact-icon"><i class="fa-solid fa-location-dot"></i></div>
+<div class="contact-text"><strong>Service Area</strong>Peterborough, ON &amp; Surrounding Communities</div>
+</div>
+<div class="contact-item">
+<div class="contact-icon"><i class="fa-solid fa-clock"></i></div>
+<div class="contact-text"><strong>Hours</strong>Mon – Fri: 8:00 AM – 10:00 PM<br>Sat: 8:00 AM – 8:00 PM<br>Emergency service
+available 24/7</div>
+</div>
+</div>
+<div class="col-lg-7">
+<div class="contact-form-card">
+<form action="https://formspree.io/f/mkokegnn"method="POST">
+<div class="row g-3">
+<div class="col-sm-6">
+
+<label class="form-label">First Name</label>
+<input type="text" class="form-control" placeholder="John" required="" />
+</div>
+<div class="col-sm-6">
+<label class="form-label">Last Name</label>
+<input type="text" class="form-control" placeholder="Smith"required="" />
+</div>
+<div class="col-sm-6">
+<label class="form-label">Phone Number</label>
+<input type="tel" class="form-control" placeholder="(705) 000-0000" required=""/>
+</div>
+<div class="col-sm-6">
+<label class="form-label">Email Address</label>
+<input type="email" class="form-control" placeholder="john@email.com" required="" />
+</div>
+<div class="col-12">
+<label class="form-label">Service Needed</label>
+<select class="form-select">
+<option value="">Select a service...</option>
+<option>Residential Maintenance</option>
+<option>Residential Repair</option>
+<option>Residential Installation</option>
+<option>Emergency Service</option>
+<option>General Inquiry</option>
+</select>
+</div>
+<div class="col-12">
+<label class="form-label">Message</label>
+<textarea class="form-control" rows="4" placeholder="Tell us a bit about what you need..." required=""></textarea>
+</div>
+<input type="hidden" name="_replyto" value="" />
+<!-- Optional: set a custom subject -->
+<input type="hidden" name="_subject" value="New contact form submission" />
+<div class="col-12 mt-1">
+<button type="submit" class="btn-submit">Send Message</button>
+</div>
+</div>
+</div>
+</form>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- FOOTER -->
+<footer>
+<div class="container">
+<img src="C:/Users/Dell/Desktop/Website/logo.png" alt="SyncAir" style="height:200px;">
+<div>
+<strong style="color:#fff;">SyncAir Heating and Cooling Inc.</strong><br>
+Peterborough, Ontario &nbsp;|&nbsp; <a href="tel:7055550192">(683)307-0001</a> &nbsp;|&nbsp; <a
+href="mailto:syncairinfo@gmail.com">syncairinfo@gmail.com</a>
+</div>
+<div class="footer-divider"></div>
+<div>&copy; 2026 SyncAir Heating and Cooling Inc. All rights reserved.</div>
+</div>
+</footer>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
+<script>
+/* ── WEATHER CODE MAP ── */
+const wmoDescriptions = {
+0: { label: 'Clear Sky', icon: '☀️' },
+1: { label: 'Mainly Clear', icon: '️' },
+2: { label: 'Partly Cloudy', icon: '⛅' },
+3: { label: 'Overcast', icon: '☁️' },
+45: { label: 'Fog', icon: '️' },
+48: { label: 'Depositing Rime Fog', icon: '️' },
+51: { label: 'Light Drizzle', icon: '️' },
+53: { label: 'Moderate Drizzle', icon: '️' },
+55: { label: 'Dense Drizzle', icon: '️' },
+61: { label: 'Slight Rain', icon: '️' },
+63: { label: 'Moderate Rain', icon: '️' },
+65: { label: 'Heavy Rain', icon: '️' },
+71: { label: 'Slight Snow', icon: '️' },
+73: { label: 'Moderate Snow', icon: '❄️' },
+75: { label: 'Heavy Snow', icon: '❄️' },
+77: { label: 'Snow Grains', icon: '️' },
+80: { label: 'Slight Showers', icon: '️' },
+81: { label: 'Moderate Showers', icon: '️' },
+82: { label: 'Violent Showers', icon: '⛈️' },
+
+85: { label: 'Slight Snow Showers', icon: '️' },
+86: { label: 'Heavy Snow Showers', icon: '❄️' },
+95: { label: 'Thunderstorm', icon: '⛈️' },
+96: { label: 'Thunderstorm w/ Hail', icon: '⛈️' },
+99: { label: 'Thunderstorm w/ Heavy Hail', icon: '⛈️' },
+};
+function getCondition(code) {
+return wmoDescriptions[code] || { label: 'Unknown', icon: '️' };
+}
+function getHvacTip(tempC) {
+if (tempC <= -10) return "❄️ Extreme cold — ensure your furnace filter is clean and your system is running efficiently.";
+if (tempC <= 0) return "🧊 Freezing temperatures — a well-maintained furnace makes all the difference tonight.";
+if (tempC <= 10) return "️ Cool weather — a good time to schedule a heating system tune-up.";
+if (tempC <= 18) return "️ Mild conditions — ideal time for HVAC inspection before the peak season.";
+if (tempC <= 25) return "✅ Comfortable range — your HVAC system is likely running at its best.";
+if (tempC <= 30) return "☀️ Warm day — consider scheduling an A/C check-up to ensure peak performance.";
+return "🔥 Hot weather — ensure your air conditioning is serviced and running efficiently.";
+}
+function renderWeather(containerId, data) {
+const current = data.current;
+const cond = getCondition(current.weather_code);
+const tempC = Math.round(current.temperature_2m);
+const humidity = current.relative_humidity_2m;
+const wind = Math.round(current.wind_speed_10m);
+const tip = getHvacTip(tempC);
+document.getElementById(containerId).innerHTML = `
+<div class="weather-icon">${cond.icon}</div>
+<div class="temp">${tempC}<sup>°C</sup></div>
+<div class="condition">${cond.label}</div>
+<div class="weather-details">
+<div class="weather-detail-item"><i class="fa-solid fa-droplet"></i> Humidity: ${humidity}%</div>
+<div class="weather-detail-item"><i class="fa-solid fa-wind"></i> Wind: ${wind} km/h</div>
+</div>
+<div class="weather-hvac-tip"><i class="fa-solid fa-lightbulb"></i>${tip}</div>
+`;
+}
+async function fetchWeather(lat, lon, containerId, cityId) {
+try {
+const url = `https://api.open-meteo.com/v1/forecast?
+latitude=${lat}&longitude=${lon}&current=temperature_2m,relative_humidity_2m,weather_code,wind_speed_10m&wind_speed_unit=kmh&timezon
+const res = await fetch(url);
+const data = await res.json();
+renderWeather(containerId, data);
+} catch (e) {
+
+document.getElementById(containerId).innerHTML = `<div class="weather-loading text-danger"><i class="fa-solid fa-triangle-exclamation me-
+2"></i>Unable to load weather data.</div>`;
+
+}
+}
+/* Peterborough, ON coordinates */
+fetchWeather(44.3001, -78.3162, 'ptbo-weather', null);
+/* User geolocation */
+if (navigator.geolocation) {
+navigator.geolocation.getCurrentPosition(async pos => {
+const { latitude, longitude } = pos.coords;
+/* Reverse geocode with Open-Meteo / nominatim */
+try {
+const geoRes = await fetch(`https://nominatim.openstreetmap.org/reverse?lat=${latitude}&lon=${longitude}&format=json`);
+const geoData = await geoRes.json();
+const city = geoData.address.city || geoData.address.town || geoData.address.village || geoData.address.county || 'Your Location';
+const province = geoData.address.state_code || geoData.address.state || '';
+document.getElementById('user-city').textContent = `${city}${province ? ', ' + province : ''}`;
+} catch {
+document.getElementById('user-city').textContent = 'Your Location';
+}
+fetchWeather(latitude, longitude, 'user-weather', 'user-city');
+}, () => {
+document.getElementById('user-city').textContent = 'Location Unavailable';
+document.getElementById('user-weather').innerHTML = `<div class="weather-loading text-muted"><i class="fa-solid fa-location-slash me-2">
+</i>Enable location access to see local weather.</div>`;
+});
+} else {
+document.getElementById('user-city').textContent = 'Not Supported';
+document.getElementById('user-weather').innerHTML = `<div class="weather-loading text-muted">Geolocation is not supported by your
+browser.</div>`;
+}
+/* ── FORM SUBMIT ── */
+
+function handleFormSubmit(e) {
+e.preventDefault();
+const btn = e.target;
+btn.textContent = 'Message Sent ✓';
+btn.style.background = '#16a34a';
+btn.disabled = true;
+setTimeout(() => {
+btn.textContent = 'Send Message';
+btn.style.background = '';
+btn.disabled = false;
+}, 4000);
+}
+</script>
+</body>
+</html>
