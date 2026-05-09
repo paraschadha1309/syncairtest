@@ -590,24 +590,24 @@ available 24/7</div>
 <div class="row g-3">
 <div class="col-sm-6">
 
-<label class="form-label">First Name</label>
-<input type="text" class="form-control" placeholder="John" required="" />
+<label class="form-label" for="firstName">First Name</label>
+<input id="firstName" name="firstName" type="text" class="form-control" placeholder="John" required="" />
 </div>
 <div class="col-sm-6">
-<label class="form-label">Last Name</label>
-<input type="text" class="form-control" placeholder="Smith"required="" />
+<label class="form-label" for="lastName">Last Name</label>
+<input id="lastName" name="lastName" type="text" class="form-control" placeholder="Smith"required="" />
 </div>
 <div class="col-sm-6">
-<label class="form-label">Phone Number</label>
-<input type="tel" class="form-control" placeholder="(705) 000-0000" required=""/>
+<label class="form-label" for="phone">Phone Number</label>
+<input id="phone" name="phone" type="tel" class="form-control" placeholder="(705) 000-0000" required=""/>
 </div>
 <div class="col-sm-6">
-<label class="form-label">Email Address</label>
-<input type="email" class="form-control" placeholder="john@email.com" required="" />
+<label class="form-label" for="email">Email Address</label>
+<input id="email" name="email" type="email" class="form-control" placeholder="john@email.com" required="" />
 </div>
 <div class="col-12">
-<label class="form-label">Service Needed</label>
-<select class="form-select">
+<label class="form-label"for="service">Service Needed</label>
+<select id="service" name="service" class="form-select" required="">
 <option value="">Select a service...</option>
 <option>Residential Maintenance</option>
 <option>Residential Repair</option>
@@ -617,9 +617,11 @@ available 24/7</div>
 </select>
 </div>
 <div class="col-12">
-<label class="form-label">Message</label>
-<textarea class="form-control" rows="4" placeholder="Tell us a bit about what you need..." required=""></textarea>
+<label class="form-label" for="message">Message</label>
+<textarea id="message" name="message" class="form-control" rows="4" placeholder="Tell us a bit about what you need..." required=""></textarea>
 </div>
+<input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off" />
+<input type="hidden" name="_subject" value="New contact form submission" />
 <input type="hidden" name="_replyto" value="" />
 <!-- Optional: set a custom subject -->
 <input type="hidden" name="_subject" value="New contact form submission" />
