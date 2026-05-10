@@ -4,6 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>SyncAir Heating and Cooling Inc.</title>
+<link rel="icon" type="image/x-icon" href=src="https://raw.githubusercontent.com/paraschadha1309/syncairtest/main/logo.PNG"">
 <link href="https://fonts.googleapis.com/css2?
 family=Barlow:wght@300;400;500;600;700&family=Barlow+Condensed:wght@600;700&display=swap" rel="stylesheet" />
 <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet" />
@@ -487,8 +488,8 @@ fair prices, every time.</p>
 </div>
 </div>
 </section>
-<!-- WEATHER -->
 
+<!-- WEATHER -->
 <a class="weatherwidget-io" href="https://forecast7.com/en/44d31n78d32/peterborough/" data-label_1="PETERBOROUGH" data-
 label_2="WEATHER" data-theme="original" >PETERBOROUGH WEATHER</a>
 
@@ -585,52 +586,61 @@ available 24/7</div>
 </div>
 </div>
 <div class="col-lg-7">
-<div class="contact-form-card">
-<form action="https://formspree.io/f/mkokegnn"method="POST">
-<div class="row g-3">
-<div class="col-sm-6">
+  <div class="contact-form-card">
+    <form id="contactForm" action="https://formspree.io/f/mkokegnn" method="POST">
+      <div class="row g-3">
+        <div class="col-sm-6">
+          <label class="form-label" for="firstName">First Name</label>
+          <input id="firstName" name="firstName" type="text" class="form-control" placeholder="John" required />
+        </div>
 
-<label class="form-label" for="firstName">First Name</label>
-<input id="firstName" name="firstName" type="text" class="form-control" placeholder="John" required="" />
+        <div class="col-sm-6">
+          <label class="form-label" for="lastName">Last Name</label>
+          <input id="lastName" name="lastName" type="text" class="form-control" placeholder="Smith" required />
+        </div>
+
+        <div class="col-sm-6">
+          <label class="form-label" for="phone">Phone Number</label>
+          <input id="phone" name="phone" type="tel" class="form-control" placeholder="(705) 000-0000" required />
+        </div>
+
+        <div class="col-sm-6">
+          <label class="form-label" for="email">Email Address</label>
+          <input id="email" name="email" type="email" class="form-control" placeholder="john@email.com" required />
+        </div>
+
+        <div class="col-12">
+          <label class="form-label" for="service">Service Needed</label>
+          <select id="service" name="service" class="form-select" required>
+            <option value="">Select a service...</option>
+            <option>Residential Maintenance</option>
+            <option>Residential Repair</option>
+            <option>Residential Installation</option>
+            <option>Emergency Service</option>
+            <option>General Inquiry</option>
+          </select>
+        </div>
+
+        <div class="col-12">
+          <label class="form-label" for="message">Message</label>
+          <textarea id="message" name="message" class="form-control" rows="4" placeholder="Tell us a bit about what you need..." required></textarea>
+        </div>
+
+        <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off" />
+        <input type="hidden" name="_subject" value="New contact form submission" />
+
+        <div class="col-12 mt-1">
+          <button type="submit" class="btn-submit">Send Message</button>
+        </div>
+      </div>
+    </form>
+
+    <div id="formStatus" style="display:none; margin-top:20px;">
+      <p>Thanks, your request was submitted successfully.</p>
+      <button type="button" id="goBackBtn" class="btn-submit">Go Back</button>
+    </div>
+  </div>
 </div>
-<div class="col-sm-6">
-<label class="form-label" for="lastName">Last Name</label>
-<input id="lastName" name="lastName" type="text" class="form-control" placeholder="Smith"required="" />
-</div>
-<div class="col-sm-6">
-<label class="form-label" for="phone">Phone Number</label>
-<input id="phone" name="phone" type="tel" class="form-control" placeholder="(705) 000-0000" required=""/>
-</div>
-<div class="col-sm-6">
-<label class="form-label" for="email">Email Address</label>
-<input id="email" name="email" type="email" class="form-control" placeholder="john@email.com" required="" />
-</div>
-<div class="col-12">
-<label class="form-label"for="service">Service Needed</label>
-<select id="service" name="service" class="form-select" required="">
-<option value="">Select a service...</option>
-<option>Residential Maintenance</option>
-<option>Residential Repair</option>
-<option>Residential Installation</option>
-<option>Emergency Service</option>
-<option>General Inquiry</option>
-</select>
-</div>
-<div class="col-12">
-<label class="form-label" for="message">Message</label>
-<textarea id="message" name="message" class="form-control" rows="4" placeholder="Tell us a bit about what you need..." required=""></textarea>
-</div>
-<input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off" />
-<input type="hidden" name="_subject" value="New contact form submission" />
-<input type="hidden" name="_replyto" value="" />
-<!-- Optional: set a custom subject -->
-<input type="hidden" name="_subject" value="New contact form submission" />
-<div class="col-12 mt-1">
-<button type="submit" class="btn-submit">Send Message</button>
-</div>
-</div>
-</div>
-</form>
 </div>
 </div>
 </div>
@@ -651,119 +661,40 @@ href="mailto:syncairinfo@gmail.com">syncairinfo@gmail.com</a>
 </footer>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
 <script>
-/* ── WEATHER CODE MAP ── */
-const wmoDescriptions = {
-0: { label: 'Clear Sky', icon: '☀️' },
-1: { label: 'Mainly Clear', icon: '️' },
-2: { label: 'Partly Cloudy', icon: '⛅' },
-3: { label: 'Overcast', icon: '☁️' },
-45: { label: 'Fog', icon: '️' },
-48: { label: 'Depositing Rime Fog', icon: '️' },
-51: { label: 'Light Drizzle', icon: '️' },
-53: { label: 'Moderate Drizzle', icon: '️' },
-55: { label: 'Dense Drizzle', icon: '️' },
-61: { label: 'Slight Rain', icon: '️' },
-63: { label: 'Moderate Rain', icon: '️' },
-65: { label: 'Heavy Rain', icon: '️' },
-71: { label: 'Slight Snow', icon: '️' },
-73: { label: 'Moderate Snow', icon: '❄️' },
-75: { label: 'Heavy Snow', icon: '❄️' },
-77: { label: 'Snow Grains', icon: '️' },
-80: { label: 'Slight Showers', icon: '️' },
-81: { label: 'Moderate Showers', icon: '️' },
-82: { label: 'Violent Showers', icon: '⛈️' },
+  const form = document.getElementById("contactForm");
+  const formStatus = document.getElementById("formStatus");
+  const goBackBtn = document.getElementById("goBackBtn");
 
-85: { label: 'Slight Snow Showers', icon: '️' },
-86: { label: 'Heavy Snow Showers', icon: '❄️' },
-95: { label: 'Thunderstorm', icon: '⛈️' },
-96: { label: 'Thunderstorm w/ Hail', icon: '⛈️' },
-99: { label: 'Thunderstorm w/ Heavy Hail', icon: '⛈️' },
-};
-function getCondition(code) {
-return wmoDescriptions[code] || { label: 'Unknown', icon: '️' };
-}
-function getHvacTip(tempC) {
-if (tempC <= -10) return "❄️ Extreme cold — ensure your furnace filter is clean and your system is running efficiently.";
-if (tempC <= 0) return "🧊 Freezing temperatures — a well-maintained furnace makes all the difference tonight.";
-if (tempC <= 10) return "️ Cool weather — a good time to schedule a heating system tune-up.";
-if (tempC <= 18) return "️ Mild conditions — ideal time for HVAC inspection before the peak season.";
-if (tempC <= 25) return "✅ Comfortable range — your HVAC system is likely running at its best.";
-if (tempC <= 30) return "☀️ Warm day — consider scheduling an A/C check-up to ensure peak performance.";
-return "🔥 Hot weather — ensure your air conditioning is serviced and running efficiently.";
-}
-function renderWeather(containerId, data) {
-const current = data.current;
-const cond = getCondition(current.weather_code);
-const tempC = Math.round(current.temperature_2m);
-const humidity = current.relative_humidity_2m;
-const wind = Math.round(current.wind_speed_10m);
-const tip = getHvacTip(tempC);
-document.getElementById(containerId).innerHTML = `
-<div class="weather-icon">${cond.icon}</div>
-<div class="temp">${tempC}<sup>°C</sup></div>
-<div class="condition">${cond.label}</div>
-<div class="weather-details">
-<div class="weather-detail-item"><i class="fa-solid fa-droplet"></i> Humidity: ${humidity}%</div>
-<div class="weather-detail-item"><i class="fa-solid fa-wind"></i> Wind: ${wind} km/h</div>
-</div>
-<div class="weather-hvac-tip"><i class="fa-solid fa-lightbulb"></i>${tip}</div>
-`;
-}
-async function fetchWeather(lat, lon, containerId, cityId) {
-try {
-const url = `https://api.open-meteo.com/v1/forecast?
-latitude=${lat}&longitude=${lon}&current=temperature_2m,relative_humidity_2m,weather_code,wind_speed_10m&wind_speed_unit=kmh&timezon
-const res = await fetch(url);
-const data = await res.json();
-renderWeather(containerId, data);
-} catch (e) {
+  form.addEventListener("submit", async function (event) {
+    event.preventDefault();
 
-document.getElementById(containerId).innerHTML = `<div class="weather-loading text-danger"><i class="fa-solid fa-triangle-exclamation me-
-2"></i>Unable to load weather data.</div>`;
+    const formData = new FormData(form);
 
-}
-}
-/* Peterborough, ON coordinates */
-fetchWeather(44.3001, -78.3162, 'ptbo-weather', null);
-/* User geolocation */
-if (navigator.geolocation) {
-navigator.geolocation.getCurrentPosition(async pos => {
-const { latitude, longitude } = pos.coords;
-/* Reverse geocode with Open-Meteo / nominatim */
-try {
-const geoRes = await fetch(`https://nominatim.openstreetmap.org/reverse?lat=${latitude}&lon=${longitude}&format=json`);
-const geoData = await geoRes.json();
-const city = geoData.address.city || geoData.address.town || geoData.address.village || geoData.address.county || 'Your Location';
-const province = geoData.address.state_code || geoData.address.state || '';
-document.getElementById('user-city').textContent = `${city}${province ? ', ' + province : ''}`;
-} catch {
-document.getElementById('user-city').textContent = 'Your Location';
-}
-fetchWeather(latitude, longitude, 'user-weather', 'user-city');
-}, () => {
-document.getElementById('user-city').textContent = 'Location Unavailable';
-document.getElementById('user-weather').innerHTML = `<div class="weather-loading text-muted"><i class="fa-solid fa-location-slash me-2">
-</i>Enable location access to see local weather.</div>`;
-});
-} else {
-document.getElementById('user-city').textContent = 'Not Supported';
-document.getElementById('user-weather').innerHTML = `<div class="weather-loading text-muted">Geolocation is not supported by your
-browser.</div>`;
-}
-/* ── FORM SUBMIT ── */
+    try {
+      const response = await fetch(form.action, {
+        method: form.method,
+        body: formData,
+        headers: {
+          "Accept": "application/json"
+        }
+      });
 
-function handleFormSubmit(e) {
-e.preventDefault();
-const btn = e.target;
-btn.textContent = 'Message Sent ✓';
-btn.style.background = '#16a34a';
-btn.disabled = true;
-setTimeout(() => {
-btn.textContent = 'Send Message';
-btn.style.background = '';
-btn.disabled = false;
-}, 4000);
-}
+      if (response.ok) {
+        form.style.display = "none";
+        formStatus.style.display = "block";
+        form.reset();
+      } else {
+        alert("Oops! There was a problem submitting your form.");
+      }
+    } catch (error) {
+      alert("Oops! There was a network error.");
+    }
+  });
+
+  goBackBtn.addEventListener("click", function () {
+    formStatus.style.display = "none";
+    form.style.display = "block";
+  });
 </script>
 </body>
 </html>
